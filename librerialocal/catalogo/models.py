@@ -43,7 +43,13 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
     # ManyToManyField, porque un género puede contener muchos libros y un libro puede cubrir varios géneros.
     # La clase Genre ya ha sido definida, entonces podemos especificar el objeto arriba.
+    def display_genre(self):
+        '''
+            Esta función se utiliza para obtener la lista de Generos asociados al Libro. 
+            No es directo pues es Muchos a Muchos, por ello se debe hacer en una función. Si fuere un Foreign Key si se puede, pues se cuenta con la LLave Primara y retorna __str__()
 
+        '''
+        return ' ,'.join([genre.name for genre in self.genre.all()[:3]])
     
     def __str__(self):
         """
@@ -58,6 +64,8 @@ class Book(models.Model):
         """
         return reverse('book-detail', args=[str(self.id)])
 
+    display_genre.short_description = 'Genre.'
+    
 
 class BookInstance(models.Model):
     """

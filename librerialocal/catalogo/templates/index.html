@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block title %}
+<title>La librería de Daniel</title>
+{% endblock%}
+{% block content %}
+<h1>Local Library Home</h1>
+
+  <p>Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
+
+<h2>Dynamic content</h2>
+
+  <p>The library has the following record counts:</p>
+  <ul>
+    <li><strong>Books:</strong> {{ var_num_libros }}</li>
+    <li><strong>Copies:</strong> {{ var_num_instances }}</li>
+    <li><strong>Copies available:</strong> {{ var_num_libros_disponibles }}</li>
+    <li><strong>Authors:</strong> {{ var_num_autores }}</li>
+    <li><strong>Con texto "inferno":</strong> {{ var_num_libros_con_inferno }}</li>
+  </ul>
+
+{% endblock %}
