@@ -16,6 +16,9 @@
     <li><strong>Copies available:</strong> {{ var_num_libros_disponibles }}</li>
     <li><strong>Authors:</strong> {{ var_num_autores }}</li>
     <li><strong>Con texto "inferno":</strong> {{ var_num_libros_con_inferno }}</li>
+
   </ul>
+
+<p>N° visitas:  {{ var_num_visitas }}{% if var_num_visitas == 1 %} time{% else %} times{% endif %}.</p>
 
 {% endblock %}

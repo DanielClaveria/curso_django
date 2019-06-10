@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #url(r'^catalogo/', include('catalogo.urls')),
-    path('catalogo/', include('catalogo.urls')),
+    url(r'^catalogo/', include('catalogo.urls')),
     path('', RedirectView.as_view(url='/catalogo/', permanent=True)),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

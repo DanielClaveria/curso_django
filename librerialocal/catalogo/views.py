@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 from django.views import generic
 
+
 def index(request):
 	'''
 	Función vista para para la página inicio del sitio
@@ -16,18 +17,38 @@ def index(request):
 	var_num_autores = Author.objects.count()
 	var_num_generos = Genre.objects.count()
 
-	return render(request,
+	var_num_visitas = request.session.get('num_visitas', 0)
+	request.session['num_visitas'] = var_num_visitas + 1
+
+
+	return render(
+		request,
 		'index.html',
-		context = {
+		context =
+		{
 			'var_num_libros': var_num_libros, 
 			'var_num_instances': var_num_instances, 
 			'var_num_libros_disponibles': var_num_libros_disponibles, 
 			'var_num_autores': var_num_autores,
 			'var_num_generos': var_num_generos,
 			'var_num_libros_con_inferno': var_num_libros_con_inferno,
+			'var_num_visitas': var_num_visitas,
 			},
 		)
 
-def BookListView(generic.ListView):
+
+class BookListView(generic.ListView):
+	model = Book
+	paginate_by = 10
+
+
+class BookDetailView(generic.DetailView):
 	model = Book
 
+
+class AuthorListView(generic.ListView):
+	model = Author
+
+
+class AuthorDetailView(generic.DetailView):
+	model = Author
